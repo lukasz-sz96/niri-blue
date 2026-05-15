@@ -14,6 +14,8 @@ brew "gh"         # GitHub CLI
 brew "git"        # Git version control
 brew "lazygit"    # Terminal UI for Git
 brew "neovim"     # Text editor
+brew "node"       # Neovim provider and JavaScript tooling
+brew "luarocks"   # Lua package manager for Neovim plugins
 
 # Shell enhancements  
 brew "starship"   # Cross-shell prompt
