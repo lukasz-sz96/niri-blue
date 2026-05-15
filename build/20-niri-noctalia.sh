@@ -3,7 +3,7 @@ set -oue pipefail
 
 # Terra repo for Noctalia
 dnf5 install -y --nogpgcheck \
-  --repofrompath "terra,https://repos.fyralabs.com/terra$releasever" \
+  --repofrompath "terra,https://repos.fyralabs.com/terra\$releasever" \
   terra-release
 
 # Niri + Noctalia + useful Niri desktop bits
