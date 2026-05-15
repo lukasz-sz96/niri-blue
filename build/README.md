@@ -57,17 +57,21 @@ To temporarily disable a script without deleting it:
 
 ## Execution Order
 
-The Containerfile runs scripts like this:
+The Containerfile runs a script runner:
 
 ```dockerfile
-RUN /ctx/build/10-build.sh
+RUN /ctx/build/00-run-all.sh
 ```
 
-If you want to run multiple scripts, you can:
+`00-run-all.sh` automatically discovers and executes executable numbered scripts (`10-*.sh`, `20-*.sh`, etc.) in order.
 
-1. **Modify Containerfile** to run each script explicitly
-2. **Create a runner script** that executes all numbered scripts
-3. **Use the default** and keep everything in `10-build.sh` (simplest)
+By default, you can keep logic split across multiple numbered scripts.
+
+To change behavior, you can:
+
+1. **Edit `00-run-all.sh`** for custom selection/execution rules
+2. **Modify Containerfile** to use a different entrypoint
+3. **Consolidate into `10-build.sh`** if you prefer a single script
 
 ## Notes
 

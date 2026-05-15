@@ -62,4 +62,5 @@ echo "::endgroup::"
 # Restore default glob behavior
 shopt -u nullglob
 
+
 echo "Custom build complete!"
