@@ -10,6 +10,13 @@ Branch=stable
 [Flatpak Preinstall org.mozilla.Thunderbird]
 Branch=stable
 
+[Flatpak Preinstall app.zen_browser.zen]
+Branch=stable
+
+# Notes
+[Flatpak Preinstall md.obsidian.Obsidian]
+Branch=stable
+
 # GNOME Core Applications
 [Flatpak Preinstall org.gnome.Calculator]
 Branch=stable
