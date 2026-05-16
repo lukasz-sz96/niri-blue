@@ -2,13 +2,12 @@
 #######################
 ### custom-system.just
 #######################
-## Example system configuration commands
-## These are simplified examples adapted from Bluefin
 
 # Run a system benchmark (requires stress-ng from Homebrew)
 [group('System')]
 benchmark:
     #!/usr/bin/env bash
+    set -euo pipefail
     source /usr/lib/ujust/ujust.sh
     if ! type -P "stress-ng" &>/dev/null ; then
         echo "stress-ng is not installed."
@@ -25,54 +24,21 @@ benchmark:
         fi
     fi
     echo 'Running a 1 minute benchmark...'
-    pushd $(mktemp -d) > /dev/null
+    pushd "$(mktemp -d)" > /dev/null
     stress-ng --matrix 0 -t 1m --times
     popd > /dev/null
 
-# Configure docker and libvirt groups for development
+# Configure Bluefin DX development groups
 [group('System')]
 configure-dev-groups:
-    #!/usr/bin/pkexec bash
-    CURRENT_USER="{{ `id -un` }}"
-    echo "Adding $CURRENT_USER to docker and libvirt groups..."
-
-    # Ensure groups exist in /etc/group
-    for group in docker libvirt; do
-        if ! grep -q "^$group:" /etc/group; then
-            echo "Adding $group to /etc/group"
-            grep "^$group:" /usr/lib/group | tee -a /etc/group > /dev/null
-        fi
-        usermod -aG $group $CURRENT_USER
-    done
-
-    echo "Groups configured. Log out and back in for changes to take effect."
-
-# Example toggle command with user choice
-[group('System')]
-toggle-example-feature:
-    #!/usr/bin/bash
-    source /usr/lib/ujust/ujust.sh
-    echo "This is an example toggle command."
-    echo "Current status: [check your status here]"
-    OPTION=$(Choose "Enable" "Disable" "Cancel")
-    case "$OPTION" in
-        "Enable")
-            echo "Enabling feature..."
-            # Add your enable logic here
-            ;;
-        "Disable")
-            echo "Disabling feature..."
-            # Add your disable logic here
-            ;;
-        "Cancel")
-            echo "No changes made."
-            ;;
-    esac
+    @ujust dx-group
 
 # Clean up container images and volumes
 [group('Maintenance')]
 clean-containers:
     #!/usr/bin/bash
+    source /usr/lib/ujust/ujust.sh
+    gum confirm "Remove unused Podman containers, images, and volumes?" || exit 0
     echo "Cleaning up Podman containers, images, and volumes..."
     podman system prune -af
     podman volume prune -f
@@ -84,7 +50,7 @@ update-and-reboot:
     #!/usr/bin/bash
     source /usr/lib/ujust/ujust.sh
     echo "Updating system..."
-    sudo bootc upgrade
+    ujust update
     if gum confirm "Reboot now to apply updates?"; then
         systemctl reboot
     else

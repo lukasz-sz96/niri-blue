@@ -9,15 +9,16 @@ Scripts are named with a number prefix (e.g., `10-build.sh`, `20-onepassword.sh`
 ## Included Scripts
 
 - **`10-build.sh`** - Main build script for base system modifications, package installation, and service configuration
+- **`20-niri-noctalia.sh`** - Installs Terra, Niri, Noctalia, and the supporting Wayland desktop packages
 
 ## Example Scripts
 
 - **`20-onepassword.sh.example`** - Example showing how to install software from third-party RPM repositories (Google Chrome, 1Password)
+- **`30-cosmic-desktop.sh.example`** - Example showing a desktop environment replacement pattern
 
 To use an example script:
 1. Remove the `.example` extension
-2. Make it executable: `chmod +x build/20-yourscript.sh`
-3. The build system will automatically run it in numerical order
+2. The build system will automatically run it in numerical order
 
 ## Creating Your Own Scripts
 
@@ -57,21 +58,20 @@ To temporarily disable a script without deleting it:
 
 ## Execution Order
 
-The Containerfile runs a script runner:
+The Containerfile runs numbered scripts directly:
 
 ```dockerfile
-RUN /ctx/build/00-run-all.sh
+for script in /ctx/build/[0-9][0-9]-*.sh; do ...; done
 ```
 
-`00-run-all.sh` automatically discovers and executes executable numbered scripts (`10-*.sh`, `20-*.sh`, etc.) in order.
+Files ending in `.example` or `.disabled` are skipped.
 
 By default, you can keep logic split across multiple numbered scripts.
 
 To change behavior, you can:
 
-1. **Edit `00-run-all.sh`** for custom selection/execution rules
-2. **Modify Containerfile** to use a different entrypoint
-3. **Consolidate into `10-build.sh`** if you prefer a single script
+1. **Modify Containerfile** to use a different entrypoint
+2. **Consolidate into `10-build.sh`** if you prefer a single script
 
 ## Notes
 

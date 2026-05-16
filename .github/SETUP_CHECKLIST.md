@@ -3,7 +3,7 @@
 ## Initial Setup
 
 ### 1. Rename Template
-- [ ] Update `finpilot` to your name in: Containerfile, Justfile, README.md, artifacthub-repo.yml
+- [x] Project identity is set to `niri-blue`.
 
 ### 2. Enable GitHub Actions
 - [ ] Settings → Actions → General → Enable workflows
@@ -12,13 +12,13 @@
 ### 3. First Push
 ```bash
 git add .
-git commit -m "feat: initial customization"
+git commit -m "feat: initial niri-blue customization"
 git push origin main
 ```
 
 ### 4. Deploy
 ```bash
-sudo bootc switch --transport registry ghcr.io/YOUR_USERNAME/YOUR_REPO:stable
+sudo bootc switch --transport registry ghcr.io/lukasz-sz96/niri-blue:stable
 sudo systemctl reboot
 ```
 
@@ -30,4 +30,3 @@ cosign generate-key-pair
 # Add cosign.key to GitHub Secrets as SIGNING_SECRET
 # Uncomment signing in .github/workflows/build.yml
 ```
-

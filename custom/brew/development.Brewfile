@@ -1,5 +1,6 @@
 # Brewfile for development tools
-# Uncomment packages you want to install
+# Language runtimes and project tooling. Prefer mise/devcontainers for
+# project-specific versions.
 
 # Container and orchestration tools
 # brew "kind"           # Kubernetes in Docker
@@ -31,8 +32,6 @@ brew "luarocks"                      # Lua package manager for Neovim plugins
 # Editors and development CLI tools
 brew "helix"
 brew "micro"
-brew "gh"
-brew "lazygit"
 
 # Build tools
 # brew "cmake"          # Cross-platform build system

@@ -1,7 +1,6 @@
-# Default Brewfile for bluepilot
-# Add your favorite brew packages here
-# 
-# Examples:
+# Default niri-blue Homebrew bundle.
+# Keep this to host-level CLI tools. Project dependencies belong in containers
+# or per-project runtime managers such as mise.
 
 # Modern CLI tools
 brew "bat"        # cat with syntax highlighting
@@ -11,13 +10,10 @@ brew "ripgrep"    # Faster grep
 
 # Development tools
 brew "gh"         # GitHub CLI
-brew "git"        # Git version control
 brew "lazygit"    # Terminal UI for Git
 brew "neovim"     # Text editor
-brew "node"       # Neovim provider and JavaScript tooling
-brew "luarocks"   # Lua package manager for Neovim plugins
 
-# Shell enhancements  
+# Shell enhancements
 brew "starship"   # Cross-shell prompt
 brew "zoxide"     # Smarter cd command
 
@@ -27,3 +23,5 @@ brew "chezmoi"    # Dotfile manager
 # Utilities
 brew "htop"       # Interactive process viewer
 brew "tmux"       # Terminal multiplexer
+brew "shellcheck" # Shell script linting
+brew "stress-ng"  # System benchmark used by ujust benchmark

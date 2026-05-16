@@ -4,7 +4,7 @@ This directory contains Brewfile declarations that will be copied into your cust
 
 ## What are Brewfiles?
 
-Brewfiles are Homebrew's way of declaring packages in a declarative format. They allow you to specify which packages, taps, and casks you want installed.
+Brewfiles are Homebrew's way of declaring packages in a declarative format. They allow you to specify which packages and taps you want installed.
 
 ## How It Works
 
@@ -45,17 +45,13 @@ ujust install-fonts
 Brewfiles use Ruby syntax:
 
 ```ruby
-# Add a tap (third-party repository)
-tap "homebrew/cask"
-
 # Install a formula (CLI tool)
 brew "bat"
 brew "eza"
 brew "ripgrep"
-
-# Install a cask (GUI application, macOS only)
-cask "visual-studio-code"
 ```
+
+Fonts in `fonts.Brewfile` use Homebrew font casks, matching Bluefin's upstream font bundle style. GUI applications should normally be installed as Flatpaks instead.
 
 ## Customization
 

@@ -1,5 +1,6 @@
-# Brewfile for fonts
-# Nerd Fonts with icons and glyphs for terminals and editors
+# Extra fonts for terminals and editors.
+# Bluefin installs fonts through Homebrew and copies them into the user font
+# directory. These cask names follow the upstream Bluefin font bundle style.
 
 # Popular coding fonts
 cask "font-fira-code-nerd-font"

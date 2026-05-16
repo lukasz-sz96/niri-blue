@@ -7,9 +7,8 @@
 [customizations.installer.kickstart]
 contents = """
 %post
-# After installation, switch to the custom image from this repository
-# IMPORTANT: Update this URL to match your repository (ghcr.io/USERNAME/REPO:stable)
-bootc switch --mutate-in-place --transport registry ghcr.io/USERNAME/REPO:stable
+# After installation, switch to the custom image from this repository.
+bootc switch --mutate-in-place --transport registry ghcr.io/lukasz-sz96/niri-blue:stable
 %end
 """
 

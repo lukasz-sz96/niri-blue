@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 set -euo pipefail
 
-# Terra repo for Noctalia
+# Terra provides the current Niri and Noctalia packages used by this image.
+# The terra-release package intentionally remains installed so the repository
+# stays available for updates to those desktop packages.
 dnf5 install -y --nogpgcheck \
   --repofrompath "terra,https://repos.fyralabs.com/terra\$releasever" \
   terra-release
@@ -44,8 +46,6 @@ dnf5 install -y \
   google-noto-emoji-fonts \
   google-noto-sans-cjk-fonts \
   google-noto-serif-cjk-fonts \
-  git \
-  chezmoi \
   gnome-keyring \
   seahorse
 
@@ -84,7 +84,6 @@ command -v satty >/dev/null
 command -v swappy >/dev/null
 command -v wf-recorder >/dev/null
 command -v mpv >/dev/null
-command -v chezmoi >/dev/null
 
 if [[ ! -f /usr/share/wayland-sessions/niri.desktop ]]; then
   echo "niri.desktop was not installed under /usr/share/wayland-sessions" >&2

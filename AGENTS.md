@@ -1,4 +1,4 @@
-# Copilot Instructions for finpilot bootc Image Template
+# Copilot Instructions for niri-blue bootc Image
 
 ## CRITICAL: GitHub API Usage
 
@@ -31,9 +31,9 @@
 
 **When this repository is used as a template, you MUST:**
 
-### 1. Rename ALL instances of `finpilot`
+### 1. Rename ALL instances of the template image name
 
-**Source of truth**: `Containerfile` line 9: `# Name: finpilot`
+**Source of truth**: `Containerfile` and `Justfile` identify this image as `niri-blue`
 
 **Files to update:**
 - `Containerfile` (line 9)
@@ -526,7 +526,7 @@ Branch=stable
 [customizations.installer.kickstart]
 contents = """
 %post
-bootc switch --mutate-in-place --transport registry ghcr.io/USERNAME/REPO:stable
+bootc switch --mutate-in-place --transport registry ghcr.io/lukasz-sz96/niri-blue:stable
 %end
 """
 ```
@@ -1013,8 +1013,8 @@ just --verbose install-default-apps
 **Test PR before merge**:
 ```bash
 # PR builds are tagged as :pr-NUMBER
-podman pull ghcr.io/YOUR_USERNAME/YOUR_REPO:pr-123
-podman run --rm -it ghcr.io/YOUR_USERNAME/YOUR_REPO:pr-123 bash
+podman pull ghcr.io/lukasz-sz96/niri-blue:pr-123
+podman run --rm -it ghcr.io/lukasz-sz96/niri-blue:pr-123 bash
 ```
 
 ### Runtime Debugging
@@ -1104,5 +1104,5 @@ Assisted-by: Claude 3.5 Sonnet via GitHub Copilot
 ---
 
 **Last Updated**: 2025-11-14  
-**Template Version**: finpilot (Enhanced with comprehensive Copilot instructions)  
+**Template Version**: niri-blue
 **Maintainer**: Universal Blue Community
